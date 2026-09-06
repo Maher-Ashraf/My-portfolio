@@ -35,7 +35,7 @@
             line-height: 1.6;
         }
 
-        /* Subtle Background Grid Lines */
+        /* Background Grid Lines */
         body::before {
             content: "";
             position: fixed;
@@ -203,30 +203,35 @@
 
         .perspectives strong { color: #fff; }
 
-        /* Hero Image - Perfect Blending Container */
+        /* HERO IMAGE - SEAMLESS BLENDING & LARGER SIZE */
         .hero-visual {
             position: relative;
-            height: 650px;
+            height: 750px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            justify-content: flex-end;
+            overflow: visible;
         }
 
         .building-img {
-            width: 100%;
-            max-width: 900px;
+            width: 130%;
+            max-width: 1100px;
             height: auto;
             object-fit: contain;
             
-            /* Ambient glowing shadow behind the cutout */
-            filter: drop-shadow(0 0 40px rgba(255, 106, 0, 0.22));
+            /* Removes grey grid/white boxes and merges wireframe into pitch black */
+            mix-blend-mode: screen; 
             
-            /* Edge Blending Mask: Fades left, right, top, and bottom into pure black */
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%),
-                                linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%);
+            /* Darkens dark areas to blend naturally with #080808 */
+            filter: contrast(125%) brightness(95%);
+            
+            /* Soft edge fades on left and bottom */
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%),
+                                linear-gradient(to top, transparent 0%, black 15%);
             -webkit-mask-composite: source-in;
             mask-composite: intersect;
+
+            transform: translateX(40px) translateY(-10px);
         }
 
         /* Sections */
@@ -408,10 +413,12 @@
         footer p { margin: 8px 0; }
         footer a { color: var(--orange); text-decoration: none; }
 
+        /* Responsive Layout Adjustments */
         @media (max-width: 1024px) {
             .wrap { padding: 0 30px; }
             .hero { grid-template-columns: 1fr; padding: 60px 0; }
-            .hero-visual { height: 500px; }
+            .hero-visual { height: 500px; justify-content: center; }
+            .building-img { width: 100%; max-width: 100%; transform: none; }
             h1 { font-size: 68px; }
             .connect-grid, .drivers-grid { grid-template-columns: repeat(2, 1fr); }
         }
@@ -454,9 +461,9 @@
                 </div>
             </div>
 
-            <!-- Image Visual displaying the precise render seamlessly -->
+            <!-- Visual Container with exact image file name -->
             <div class="hero-visual">
-                <img src="building.png" alt="Maher Ashraf Architectural Render" class="building-img">
+                <img src="Gemini_Generated_Image_2w8v7m2w8v7m2w8v.jpeg" alt="Maher Ashraf Architectural Render" class="building-img">
             </div>
         </section>
 
