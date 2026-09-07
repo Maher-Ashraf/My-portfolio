@@ -203,7 +203,7 @@
 
         .perspectives strong { color: #fff; }
 
-        /* HERO IMAGE - SEAMLESS BLENDING & LARGER SIZE */
+        /* HERO IMAGE - WHITE BACKGROUND BLENDING FIX */
         .hero-visual {
             position: relative;
             height: 750px;
@@ -219,14 +219,12 @@
             height: auto;
             object-fit: contain;
             
-            /* Removes grey grid/white boxes and merges wireframe into pitch black */
+            /* Inverts white image to dark background while preserving blue/orange accents */
+            filter: invert(1) hue-rotate(180deg) contrast(115%);
             mix-blend-mode: screen; 
             
-            /* Darkens dark areas to blend naturally with #080808 */
-            filter: contrast(125%) brightness(95%);
-            
-            /* Soft edge fades on left and bottom */
-            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%),
+            /* Edge Blending Mask */
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%),
                                 linear-gradient(to top, transparent 0%, black 15%);
             -webkit-mask-composite: source-in;
             mask-composite: intersect;
@@ -461,7 +459,7 @@
                 </div>
             </div>
 
-            <!-- Visual Container with exact updated image file name -->
+            <!-- Visual Container with exact image file name -->
             <div class="hero-visual">
                 <img src="ChatGPT Image Sep 7, 2026, 03_12_45 AM.png" alt="Maher Ashraf Architectural Render" class="building-img">
             </div>
