@@ -425,52 +425,76 @@
                 width: 100%;
                 max-width: 100%;
                 transform: none;
-                /* Removes harsh masking edges on tablet/mobile */
                 -webkit-mask-image: linear-gradient(to top, transparent 0%, black 10%);
             }
         }
 
-        /* Mobile Layout Adjustments */
+        /* Mobile Layout Adjustments - Ambient Overlay Approach */
         @media (max-width: 768px) {
             .wrap { padding: 0 20px; }
             
             nav { height: 70px; }
-            nav .links { gap: 14px; font-size: 9px; letter-spacing: 1px; }
+            nav .links { gap: 12px; font-size: 8.5px; letter-spacing: 1px; }
             
-            .hero { padding: 30px 0; gap: 30px; }
-            h1 { font-size: 46px; letter-spacing: -1.5px; }
-            .role { font-size: 15px; margin: 20px 0; }
-            .tagline { font-size: 14px; margin-bottom: 20px; }
+            .hero {
+                display: block;
+                position: relative;
+                padding: 40px 0 20px 0;
+                min-height: auto;
+            }
+
+            .hero-content {
+                position: relative;
+                z-index: 3;
+            }
+
+            h1 { 
+                font-size: 48px; 
+                letter-spacing: -1.5px; 
+                line-height: 0.95;
+            }
+
+            .role { font-size: 14px; margin: 18px 0; }
+            .tagline { font-size: 13.5px; margin-bottom: 24px; }
             
-            /* Clean Mobile Building Presentation */
+            /* Background Ambient Render Position */
             .hero-visual {
-                height: 280px;
+                position: absolute;
+                top: 10px;
+                right: -40px;
                 width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                overflow: hidden;
+                height: 100%;
+                z-index: 1;
+                pointer-events: none;
+                display: block;
+                opacity: 0.45;
             }
 
             .building-img {
-                width: 100%;
-                max-width: 100%;
+                width: 120%;
+                max-width: none;
                 height: 100%;
                 object-fit: contain;
+                object-position: right top;
                 transform: none;
-                -webkit-mask-image: linear-gradient(to top, transparent 0%, black 15%),
-                                    linear-gradient(to bottom, transparent 0%, black 10%);
+                -webkit-mask-image: linear-gradient(to left, black 20%, transparent 80%),
+                                    linear-gradient(to bottom, black 30%, transparent 90%);
                 -webkit-mask-composite: source-in;
                 mask-composite: intersect;
+            }
+
+            .perspectives {
+                background: rgba(12, 12, 12, 0.85);
+                backdrop-filter: blur(8px);
             }
 
             .connect-grid, .drivers-grid, .activities-grid {
                 grid-template-columns: 1fr;
             }
 
-            .section { margin: 80px 0; }
-            .quote-section { padding: 50px 20px; margin: 80px 0; }
-            .quote-text { font-size: 16px; }
+            .section { margin: 70px 0; }
+            .quote-section { padding: 40px 20px; margin: 70px 0; }
+            .quote-text { font-size: 15px; }
         }
     </style>
 </head>
